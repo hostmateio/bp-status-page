@@ -1,6 +1,4 @@
 import React from 'react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { CheckCircle, AlertCircle, MinusCircle, Clock, AlertTriangle, ExternalLink } from 'lucide-react';
 
 const ServiceStatus = ({ name, status, lastUpdated }) => {
@@ -38,16 +36,16 @@ const ServiceStatus = ({ name, status, lastUpdated }) => {
 };
 
 const ServiceGroup = ({ title, services }) => (
-  <Card className="mb-6 border-0 shadow-sm">
-    <CardHeader className="pb-2">
-      <CardTitle className="text-lg font-medium text-slate-900">{title}</CardTitle>
-    </CardHeader>
-    <CardContent>
+  <div className="mb-6 rounded-lg border border-slate-200 bg-white shadow-sm">
+    <div className="p-6 pb-2">
+      <h3 className="text-lg font-medium text-slate-900">{title}</h3>
+    </div>
+    <div className="p-6">
       {services.map((service, index) => (
         <ServiceStatus key={index} {...service} />
       ))}
-    </CardContent>
-  </Card>
+    </div>
+  </div>
 );
 
 const StatusPage = () => {
@@ -72,39 +70,42 @@ const StatusPage = () => {
         {/* Header */}
         <div className="mb-8 bg-white rounded-xl p-8 shadow-sm">
           <div className="max-w-3xl">
-            <h1 className="text-3xl font-bold mb-3 text-slate-900">Best Practice Software</h1>
-            <h2 className="text-xl font-semibold mb-2 text-slate-700">Bp Premier Status</h2>
+            <h1 className="text-3xl font-bold mb-2 text-slate-900">Best Practice Software</h1>
             <p className="text-slate-600">Current status of services and integrations</p>
           </div>
         </div>
 
         {/* Alert Banner */}
-        <Alert className="mb-6 border-rose-200 bg-rose-50">
-          <AlertCircle className="h-4 w-4 text-rose-500" />
-          <AlertTitle className="text-rose-900">Active Incident</AlertTitle>
-          <AlertDescription className="text-rose-700">
-            Best Health App is currently experiencing service degradation. Our team is investigating.
-          </AlertDescription>
-        </Alert>
+        <div className="mb-6 rounded-lg border border-rose-200 bg-rose-50 p-4">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="h-4 w-4 text-rose-500 mt-1" />
+            <div>
+              <h5 className="text-rose-900 font-medium mb-1">Active Incident</h5>
+              <p className="text-rose-700 text-sm">
+                Best Health App is currently experiencing service degradation. Our team is investigating.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Status Overview */}
         <div className="grid grid-cols-2 gap-4 mb-8">
-          <Card className="border-0 shadow-sm bg-emerald-50">
-            <CardContent className="pt-6">
+          <div className="rounded-lg border border-slate-200 bg-emerald-50 shadow-sm">
+            <div className="p-6">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-5 h-5 text-emerald-500" />
                 <span className="text-sm font-medium text-emerald-900">Most systems operational</span>
               </div>
-            </CardContent>
-          </Card>
-          <Card className="border-0 shadow-sm bg-amber-50">
-            <CardContent className="pt-6">
+            </div>
+          </div>
+          <div className="rounded-lg border border-slate-200 bg-amber-50 shadow-sm">
+            <div className="p-6">
               <div className="flex items-center space-x-2">
                 <Clock className="w-5 h-5 text-amber-500" />
                 <span className="text-sm font-medium text-amber-900">Service degradation detected</span>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* Australian Services */}
@@ -112,8 +113,8 @@ const StatusPage = () => {
           <h2 className="text-xl font-semibold mb-4 text-slate-900">Australia</h2>
           <ServiceGroup title="Cloud Products" services={australianServices.cloud} />
           
-          <Card className="border-0 shadow-sm">
-            <CardContent className="pt-6">
+          <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
+            <div className="p-6">
               <h3 className="font-medium mb-3 text-slate-900">Government Services Status</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <a 
@@ -166,8 +167,8 @@ const StatusPage = () => {
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* New Zealand Services */}
